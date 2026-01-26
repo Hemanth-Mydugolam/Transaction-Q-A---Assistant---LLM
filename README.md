@@ -3,7 +3,7 @@
 This project is a Streamlit-based LLM application that allows users to query bank transaction statements using natural language.
 
 The application:
-- Reads transaction PDFs from a local project folder
+- Reads transaction PDFs from a local project folder (PDF's are generated using sample_statements_pdf_generater.py code)
 - Extracts tabular transaction data
 - Loads it into Pandas
 - Uses an LLM to interpret user queries

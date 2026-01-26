@@ -1,0 +1,9 @@
+streamlit
+pandas
+pdfplumber
+langchain
+langchain-openai
+langchain-experimental
+python-dateutil
+reportlab
+reportlab

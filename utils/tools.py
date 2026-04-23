@@ -1,3 +1,4 @@
+import pandas as pd
 from langchain_core.tools import tool
 from typing import Optional
 
@@ -90,17 +91,16 @@ def make_tools(df_ref: dict) -> list:
         for m in [month1, month2]:
             sub = df[df["date"].dt.month_name() == m]
             if sub.empty:
-                rows.append({"Month": m, "Total Debit": "N/A", "Total Credit": "N/A", "Net": "N/A"})
+                rows.append({"Month": m, "Total Debit": "N/A", "Total Credit": "N/A", "Net (Credit - Debit)": "N/A"})
             else:
-                debit = sub[sub["type"] == "debit"]["amount"].sum()
+                debit  = sub[sub["type"] == "debit"]["amount"].sum()
                 credit = sub[sub["type"] == "credit"]["amount"].sum()
                 rows.append({
-                    "Month": m,
-                    "Total Debit": f"{debit:.2f}",
-                    "Total Credit": f"{credit:.2f}",
-                    "Net (Credit - Debit)": f"{credit - debit:.2f}",
+                    "Month":                 m,
+                    "Total Debit":           f"{debit:.2f}",
+                    "Total Credit":          f"{credit:.2f}",
+                    "Net (Credit - Debit)":  f"{credit - debit:.2f}",
                 })
-        import pandas as pd
         comparison = pd.DataFrame(rows)
         return f"Comparison between {month1} and {month2}:\n{comparison.to_string(index=False)}"
 

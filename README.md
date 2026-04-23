@@ -19,15 +19,26 @@ A Streamlit application that lets users query their bank transaction statements 
 
 ```
 .
-├── app.py                          # Streamlit app — login, agent wiring, chat UI
-├── tools.py                        # 5 LangChain agent tools (make_tools factory)
-├── sample_statements_pdf_generater.py  # Generates combined PDF statements
-├── data/
+├── app.py                            # Streamlit entry point — login, agent wiring, chat UI
+│
+├── utils/                            # Application modules
+│   ├── __init__.py
+│   ├── tools.py                      # 5 LangChain agent tools (make_tools factory)
+│   ├── pdf_loader.py                 # PDF extraction and DataFrame cleaning
+│   └── logger.py                     # JSONL chat session logging
+│
+├── scripts/                          # One-off utility scripts
+│   └── generate_statements.py        # Generates sample PDF statements into data/
+│
+├── data/                             # PDF statement files (per user)
 │   ├── john_doe_statement_2025.pdf
 │   └── jane_smith_statement_2025.pdf
-├── logs/                           # Auto-created; gitignored
+│
+├── logs/                             # Auto-created at runtime; gitignored
 │   └── {username}_chat_history.jsonl
-├── .env                            # API key + user credentials (not committed)
+│
+├── .env                              # API key + user credentials (never committed)
+├── .gitignore
 ├── requirements.txt
 └── environment.yml
 ```
@@ -109,7 +120,7 @@ Add more users by incrementing the number (`USER3_*`, etc.).
 ### 3. Generate sample PDF statements
 
 ```bash
-python sample_statements_pdf_generater.py
+python scripts/generate_statements.py
 ```
 
 This creates one combined 3-month PDF per user in `data/`:

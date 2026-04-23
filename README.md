@@ -95,13 +95,13 @@ pip install -r requirements.txt
 ```env
 OPENAI_API_KEY=sk-...
 
-USER1_ID=john_doe
-USER1_PASSWORD=John@123
-USER1_NAME=John Doe
+USER1_ID=userid1
+USER1_PASSWORD=password1
+USER1_NAME=Full Name 1
 
-USER2_ID=jane_smith
-USER2_PASSWORD=Jane@456
-USER2_NAME=Jane Smith
+USER2_ID=userid2
+USER2_PASSWORD=password2
+USER2_NAME=Full Name 2
 ```
 
 Add more users by incrementing the number (`USER3_*`, etc.).

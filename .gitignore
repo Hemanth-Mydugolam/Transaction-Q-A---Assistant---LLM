@@ -18,3 +18,6 @@ venv/
 
 # Data artifacts (optional – keep PDFs if needed)
 *.log
+
+# Chat session logs (contain user data)
+logs/

@@ -1,6 +1,39 @@
 # 📊 Transaction Q&A Assistant
 
-A Streamlit application that lets users query their bank transaction statements using natural language. Built with a LangChain ReAct agent backed by GPT-4o-mini, it reasons across multiple tool calls to answer complex financial questions — with per-user login, conversational memory, and persistent chat logs.
+## Overview
+
+In a modern banking system, customers generate large volumes of transaction data every month — but making sense of that data typically requires manual effort, spreadsheet exports, or calls to customer support. This project demonstrates how a conversational AI layer can sit on top of structured transaction data to let customers query their own statements instantly, in plain English.
+
+### How it fits into a banking architecture
+
+```
+┌─────────────────────────────────────────────────────┐
+│                   Banking System                    │
+│                                                     │
+│  ┌─────────────┐      ┌──────────────────────────┐  │
+│  │  Core       │      │  Statement Generation     │  │
+│  │  Banking    │─────▶│  (PDF / CSV export)       │  │
+│  │  (Ledger)   │      └────────────┬─────────────┘  │
+│  └─────────────┘                   │                 │
+│                                    ▼                 │
+│                        ┌───────────────────────┐     │
+│                        │  Transaction Q&A      │     │
+│                        │  Assistant  ◀── (this │     │
+│                        │  project)             │     │
+│                        │                       │     │
+│                        │  • Authenticated UI   │     │
+│                        │  • Agentic reasoning  │     │
+│                        │  • Natural language   │     │
+│                        │  • Audit log (JSONL)  │     │
+│                        └───────────────────────┘     │
+└─────────────────────────────────────────────────────┘
+```
+
+In a production banking context, the PDF statements used here would be replaced by a live connection to the core banking ledger or a data warehouse. The AI layer — authentication, agent reasoning, tool execution, and logging — remains the same.
+
+### What this project implements
+
+A working prototype of the Transaction Q&A Assistant layer: users log in, their statement is loaded, and a LangChain ReAct agent backed by GPT-4o-mini answers natural language questions by calling structured analysis tools — with conversational memory across follow-up questions and a full JSONL audit log per user.
 
 ---
 
